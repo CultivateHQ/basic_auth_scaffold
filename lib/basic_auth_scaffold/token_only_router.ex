@@ -10,15 +10,13 @@ defmodule TokenOnlyRouter do
   """
 
   use Plug.Router
-  plug :check_token
+  plug(:check_token)
 
-
-  plug :match
-  plug :dispatch
-
+  plug(:match)
+  plug(:dispatch)
 
   def start_link do
-    {:ok, _} = Plug.Adapters.Cowboy.http __MODULE__, [], [port: 4502]
+    {:ok, _} = Plug.Adapters.Cowboy2.http(__MODULE__, [], port: 4502)
   end
 
   get "/" do
@@ -31,15 +29,16 @@ defmodule TokenOnlyRouter do
 
   defp check_token(conn, _opts) do
     header_content = Plug.Conn.get_req_header(conn, "authorization")
+
     conn
     |> check_authorisation(header_content)
   end
 
   defp check_authorisation(conn, ["letmein"]), do: conn
+
   defp check_authorisation(conn, _) do
     conn
     |> Plug.Conn.send_resp(401, "Get out of here!\n")
     |> Plug.Conn.halt()
   end
-
 end

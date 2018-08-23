@@ -1,14 +1,13 @@
 defmodule UnamePasswordRouter do
   use Plug.Router
 
-  plug BasicAuth, use_config: {:basic_auth_scaffold, :uname_password}
+  plug(BasicAuth, use_config: {:basic_auth_scaffold, :uname_password})
 
-  plug :match
-  plug :dispatch
-
+  plug(:match)
+  plug(:dispatch)
 
   def start_link do
-    {:ok, _} = Plug.Adapters.Cowboy.http __MODULE__, [], [port: 4500]
+    {:ok, _} = Plug.Adapters.Cowboy2.http(__MODULE__, [], port: 4500)
   end
 
   get "/" do
