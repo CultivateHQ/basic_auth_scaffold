@@ -6,6 +6,6 @@ My default, `mix.exs` configures the plugin to be loaded from a sibling director
 
 Routes are
 
-* localhost:4500 - credentials from config
-* localhost:4501 - credentials authenticated with a callback function
-* localhost:4502 - not even basic auth, but demonstrating check from a single `authenticate` request header.
+- localhost:4500 - credentials from config
+- localhost:4501 - credentials authenticated with a callback function
+- localhost:4502 - not even basic auth, but demonstrating check from a single `authorization` request header.
