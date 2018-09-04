@@ -13,7 +13,7 @@ defmodule BasicAuthScaffold.Mixfile do
 
   def application do
     [
-      extra_applications: [:logger, :cowboy],
+      extra_applications: [:logger],
       mod: {BasicAuthScaffold.Application, []}
     ]
   end
