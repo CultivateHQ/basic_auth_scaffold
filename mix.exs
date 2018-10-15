@@ -6,7 +6,7 @@ defmodule BasicAuthScaffold.Mixfile do
       app: :basic_auth_scaffold,
       version: "0.1.0",
       elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
   end
@@ -21,6 +21,8 @@ defmodule BasicAuthScaffold.Mixfile do
   defp deps do
     [
       {:basic_auth, path: "../basic_auth"},
+      {:plug, "~> 1.6"},
+      {:cowboy, "~> 2.3"}
     ]
   end
 end

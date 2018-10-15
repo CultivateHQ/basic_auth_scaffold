@@ -1,14 +1,13 @@
 defmodule CallbackRouter do
   use Plug.Router
 
-  plug BasicAuth, callback: &CallbackRouter.check_username_password/3
+  plug(BasicAuth, callback: &CallbackRouter.check_username_password/3)
 
-  plug :match
-  plug :dispatch
-
+  plug(:match)
+  plug(:dispatch)
 
   def start_link do
-    {:ok, _} = Plug.Adapters.Cowboy.http __MODULE__, [], [port: 4501]
+    {:ok, _} = Plug.Adapters.Cowboy2.http(__MODULE__, [], port: 4501)
   end
 
   get "/" do
